@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <%- include('partials/header') %>
+    <style>
+      .vwheader {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .vwheader img {
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+      }
+    </style>
+</head>
+
+<body>
+  <%- include('partials/adminnavbar') %>
+
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+        <% if (studentlist !=null){ studentlist.forEach((std)=>{ %>
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="data:<%= std.photoformat %>;base64,<%= std.photo.toString('base64') %>"class="img-fluid rounded-start" alt="...">
+                <div style="display: flex; justify-content: center; flex-direction: column; gap: 10px; margin: 5px; align-items: center;">
+                  <a href="/admin/userprofileget/<%= std.email %>" type="button" class="btn btn-outline-primary">view profile</a>
+                  <a href="/admin/userprofileblock/<%= std.email %>" type="button" class="btn btn-outline-warning">block user</a>
+                  <a href="/admin/userprofiledelete/<%= std._id %>" type="button" class="btn btn-outline-danger">delete User</a>
+                </div>
+              </div>
+
+
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= std.name %> : <%= std.mobile %>
+                  </h5>
+                  <p class="card-text">
+                  <b>emial id:</b>  <%= std.email %> <br> <b> email status:</b> <%= std.emailverified %> <br>
+                        <b>block status:</b><%= std.blockstatus %> <br>
+                          <b>gender:</b>
+                          <%= std.gender %>
+                            <br> <b>Dob:</b>
+                            <%= std.dob %> <br>
+                      <b>role:</b><%= std.role %> <br>
+                     <b>add.-</b> <%= std.address %>,<%= std.city %>,<%= std.state %>
+                  </p>
+                  <p class="card-text"><small class="text-muted"><%= std._id %></small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% })} %>
+      </div>
+    </div>
+
+    
+
+
+
+
+    <%- include('partials/footer') %>
+
+</body>
+
+</html>

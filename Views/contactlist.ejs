@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <%- include('partials/header') %>
+
+</head>
+
+<body>
+  <%- include('partials/adminnavbar') %>
+  
+
+      <div class="container">
+        <div class="row">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">sn no.</th>
+                <th scope="col">id</th>
+                <th scope="col">name</th>
+                <th scope="col">email</th>
+                <th scope="col">mobile</th>
+                <th scope="col">city</th>
+                <th scope="col">action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% contactlist.forEach((contact,index)=>{ %>
+                <tr>
+                  <th scope="row"><%= index+1 %></th>
+                  <th scope="row"><%= contact._id %></th>
+                  <th scope="row"><%= contact.name %></th>
+                  <th scope="row"><%= contact.email %></th>
+                  <th scope="row"><%= contact.phone %></th>
+                  <th scope="row"><%= contact.city %></th>
+                  <th scope="row">
+                   <a class="btn btn-outline-danger" type="button" onclick="return confirm('are you want to delete')"  href="/admin/delete/<%= contact._id %>"  role="button">Delete</a> %></th>
+                </tr>
+                <% }) %>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <%- include('partials/footer') %>
+
+</body>
+
+</html>

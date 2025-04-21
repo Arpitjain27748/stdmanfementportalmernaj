@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('partials/header') %>
+    <style>
+        #stdphot{
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+   <%- include('partials/stdnavbar') %>
+
+    <h2>hay student home</h2>
+        <h3>welcome: <%= loginuser.name %></h3>
+        <h3>role is: <%= loginuser.role %></h3>
+
+        <center>photo :
+            <img src="data:<%= loginuser.photoformat%>;base64,<%= loginuser.photo.toString('base64') %>" height="100px" width="100px" id="stdphot" alt="">
+        </center>
+    <%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('partials/header') %>
+</head>
+<body>
+  <%- include('partials/usernavbar') %>
+
+  <center>
+    <h3>contact page</h3>
+  </center>
+    <div class="container">
+      <div class="alert  <%= typeof type != null ? type: ''   %>">
+        <%= typeof msg != null ? msg: ''   %>
+      </div>
+          <form class="row g-3 needs-validation" novalidate    action="/contact" method="post">
+            <div class="col-md-4">
+              <label for="validationCustom01" class="form-label">Name</label>
+              <input type="text" name="uname" class="form-control" id="validationCustom01" required>
+              <div class="valid-feedback">
+               Name ok!
+              </div>
+              <div class="invalid-feedback">
+                Please Enter a Student Name.
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="validationCustom02" class="form-label">Mobile</label>
+              <input type="tel" name="phone" class="form-control" id="validationCustom02"required>
+              <div class="valid-feedback">
+                Mobile Ok!
+              </div>
+              <div class="invalid-feedback">
+                Please Enter a Mobile number.
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="validationCustom03" class="form-label">Email</label>
+              <input type="email" name="email" class="form-control" id="validationCustom03" required>
+              <div class="valid-feedback">
+                email Ok!
+              </div>
+              <div class="invalid-feedback">
+                Please provide a email.
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label for="validationCustom04" class="form-label">State</label>
+              <select class="form-select" name="state" id="validationCustom04" required>
+                <option>Choose...</option>
+               
+                <option>mp</option> 
+                <option>up</option> 
+                <option>mh</option>
+              </select>
+              <div class="valid-feedback">
+                state Ok!
+              </div>
+              <div class="invalid-feedback">
+                Please select a valid state.
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label for="validationCustom05" class="form-label">city</label>
+              <input type="text" name="city" class="form-control" id="validationCustom05" required>
+              <div class="valid-feedback">
+                city Ok!
+              </div>
+              <div class="invalid-feedback">
+                Please provide a valid city.
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                <label class="form-check-label" for="invalidCheck">
+                  Agree to terms and conditions
+                </label>
+                <div class="valid-feedback">
+                  ok Ok!
+                </div>
+                <div class="invalid-feedback">
+                  You must agree before submitting.
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit">Submit form</button>
+            </div>
+          </form>
+    </div>
+
+
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+    </script>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

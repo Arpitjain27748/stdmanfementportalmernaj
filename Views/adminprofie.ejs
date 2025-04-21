@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <%- include('partials/header') %>
+  <style>
+    .vwheader{
+      display: flex;
+      justify-content: space-between;
+    }
+    .vwheader img{
+      height: 200px;
+      width: 200px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <%- include('partials/adminnavbar') %>
+
+
+    <div class="container registerform">
+      <div class="row">
+        <div class="<%= type %>"> <%= msg %> </div>
+        <div class="col">
+          <div class="vwheader">
+           <h1> view profile Page</h1>
+           <%= loginuser._id %>
+          <img src="data:<%= loginuser.photoformat %>;base64,<%= loginuser.photo.toString('base64') %>" alt="img not found">
+         </div>
+          <form class="row g-3 needs-validation" novalidate action="/admin/adminupdate" method="post" enctype="multipart/form-data">
+            <div class="col-md-4">
+              <input type="hidden" value="<%= loginuser._id %>" name="urid">
+              <label for="validationCustom01" class="form-label">User Name</label>
+              <input type="text" value="<%= loginuser.name %>" class="form-control" name="urname" id="validationCustom01" required>
+              <div class="valid-feedback">
+                ok!
+              </div>
+              <div class="invalid-feedback">
+                enter user name.
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="validationCustom02" class="form-label">Mobile</label>
+              <input type="text" class="form-control"  value="<%= loginuser.mobile %>" name="urmobile" id="validationCustom02" required>
+              <div class="valid-feedback">
+                ok!
+              </div>
+              <div class="invalid-feedback">
+                enter mobile.
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="validationCustom02" class="form-label">Email</label>
+              <input type="text" class="form-control" readonly  value="<%= loginuser.email %>" name="uremail" id="validationCustom02" required>
+              <div class="valid-feedback">
+                ok!
+              </div>
+              <div class="invalid-feedback">
+                enter email.
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="validationCustom02" class="form-label">Gender</label><br>
+              <span>
+                <h4> <%= loginuser.gender %></h4>
+                <input type="radio" name="gender" name="urgender" value="male" required>Male
+                <input type="radio" name="gender" value="female">Female
+              </span>
+              <div class="valid-feedback">
+                ok!
+              </div>
+              <div class="invalid-feedback">
+                select gender.
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="validationCustom02" class="form-label">Block status</label><br>
+              <span>
+                <h4> <%= loginuser.blockstatus %></h4>
+                <input type="radio" name="blockstatus" name="urblockstatus" value="blocked">do block
+                <input type="radio" name="blockstatus" checked value="unblocked">do unblock
+              </span>
+              <div class="valid-feedback">
+                ok!
+              </div>
+              <div class="invalid-feedback">
+                select blockstatus.
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="validationCustom02" class="form-label">Role</label><br>
+              <span>
+                <h4><%= loginuser.role %></h4>
+                <input type="radio" name="role" name="urrole" value="admin">admin
+                <input type="radio" name="role" checked value="student">student
+              </span>
+              <div class="valid-feedback">
+                ok!
+              </div>
+              <div class="invalid-feedback">
+                select role.
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="validationCustom02" class="form-label">Date of Birth</label>
+             
+               <% let month= String(loginuser.dob.getMonth()+1).padStart(2,'0') %>
+             
+              <input type="date" class="form-control" value="<%= loginuser.dob.getFullYear() %>-<%= month %>-<%= loginuser.dob.getDate() %>" name="urdob" id="validationCustom02" required>
+              <div class="valid-feedback">
+                ok!
+              </div>
+              <div class="invalid-feedback">
+                give date of birth.
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="validationCustom02" class="form-label">Photo</label>
+              <input type="file" class="form-control" name="stdphoto" id="validationCustom02" required>
+              <div class="valid-feedback">
+                ok!
+              </div>
+              <div class="invalid-feedback">
+                upload photo.
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="validationCustom02" class="form-label">Address</label>
+              <input type="text" value="<%= loginuser.address %>" class="form-control" name="uraddress" id="validationCustom02" required>
+              <div class="valid-feedback">
+                ok!
+              </div>
+              <div class="invalid-feedback">
+                enter address.
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="validationCustom03" class="form-label">City</label>
+              <input type="text" value="<%= loginuser.city %>" class="form-control" name="urcity" id="validationCustom03" required>
+              <div class="valid-feedback">
+                ok!
+              </div>
+              <div class="invalid-feedback">
+                enter city.
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="validationCustom04" class="form-label">State</label>
+              <select class="form-select" name="urstate" id="validationCustom04" required>
+                <option selected disabled value=""><%= loginuser.state %></option>
+                <option>MP</option>
+                <option>UP</option>
+                <option>DL</option>
+                <option>MH</option>
+                <option>CH</option>
+              </select>
+              <div class="valid-feedback">
+                ok!
+              </div>
+              <div class="invalid-feedback">
+                choose state.
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="validationCustom05" class="form-label">Password</label>
+              <input type="text" value="<%= loginuser.password %>" class="form-control" name="urpwd" id="validationCustom05" required>
+              <div class="valid-feedback">
+                ok!
+              </div>
+              <div class="invalid-feedback">
+                create password.
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="uragree" value=" i Agree to terms and conditions"
+                  id="invalidCheck" required>
+                <label class="form-check-label" for="invalidCheck">
+                  i Agree to terms and conditions
+                </label>
+                <div class="valid-feedback">
+                  ok!
+                </div>
+                <div class="invalid-feedback">
+                  You must agree before submitting.
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit">Update Now</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+    <%- include('partials/footer') %>
+      <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+          'use strict'
+
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.querySelectorAll('.needs-validation')
+
+          // Loop over them and prevent submission
+          Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+              form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                  event.preventDefault()
+                  event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+              }, false)
+            })
+        })()
+
+
+
+
+        var exampleModal = document.getElementById('exampleModal')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+          // Button that triggered the modal
+          var button = event.relatedTarget
+          // Extract info from data-bs-* attributes
+          var recipient = button.getAttribute('data-bs-whatever')
+          // If necessary, you could initiate an AJAX request here
+          // and then do the updating in a callback.
+          //
+          // Update the modal's content.
+          var modalTitle = exampleModal.querySelector('.modal-title')
+          var modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+          modalTitle.textContent = 'verify email to give access for user '
+          modalBodyInput.value = recipient
+        })
+</script>
+</body>
+
+</html>
